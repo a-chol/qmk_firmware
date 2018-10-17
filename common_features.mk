@@ -247,6 +247,13 @@ ifeq ($(strip $(LEADER_ENABLE)), yes)
   OPT_DEFS += -DLEADER_ENABLE
 endif
 
+ifeq ($(strip $(JOYSTICK_ENABLE)), yes)
+    OPT_DEFS += -DJOYSTICK_ENABLE
+    SRC += $(QUANTUM_DIR)/process_keycode/process_joystick.c
+    SRC += $(QUANTUM_DIR)/joystick.c
+    SRC += drivers/avr/analog.c
+endif
+
 include $(DRIVER_PATH)/qwiic/qwiic.mk
 
 QUANTUM_SRC:= \
