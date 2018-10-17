@@ -74,6 +74,7 @@
   * [Grave Escape](feature_grave_esc.md)
   * [Haptic Feedback](feature_haptic_feedback.md)
   * [HD44780 LCD Controller](feature_hd44780.md)
+  * [Joystick](feature_joystick.md)
   * [Key Lock](feature_key_lock.md)
   * [Layouts](feature_layouts.md)
   * [Leader Key](feature_leader_key.md)
