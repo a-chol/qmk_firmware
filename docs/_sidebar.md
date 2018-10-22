@@ -55,6 +55,7 @@
   * [Dynamic Macros](feature_dynamic_macros.md)
   * [Encoders](feature_encoders.md)
   * [Grave Escape](feature_grave_esc.md)
+  * [Joystick](feature_joystick.md)
   * [Key Lock](feature_key_lock.md)
   * [Layouts](feature_layouts.md)
   * [Leader Key](feature_leader_key.md)
