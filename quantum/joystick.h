@@ -17,6 +17,7 @@
 #define JS_VIRTUAL_AXIS 0xFF
 
 typedef struct {
+  uint8_t output_pin;
   uint8_t input_pin;
   
   //the AVR ADC offers 10 bit precision, with significant bits on the higher part

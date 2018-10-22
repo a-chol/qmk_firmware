@@ -9,19 +9,23 @@
 
 bool process_joystick_buttons(uint16_t keycode, keyrecord_t *record);
 
-bool process_joystick_analog(void);
-
 bool process_joystick(uint16_t keycode, keyrecord_t *record){
   
-  bool ok = process_joystick_buttons(keycode, record) 
-    &&      process_joystick_analog();
-  
-  if (ok && (joystick_status.status & JS_UPDATED)>0){
+  if (process_joystick_buttons(keycode, record) 
+    && (joystick_status.status & JS_UPDATED)>0){
     send_joystick_packet(&joystick_status);
     joystick_status.status &= ~JS_UPDATED;
   }
   
-  return ok;
+  return true;
+}
+
+__attribute__ ((weak))
+void joystick_task(void){
+  if (process_joystick_analog() && (joystick_status.status & JS_UPDATED)){
+    send_joystick_packet(&joystick_status);
+    joystick_status.status &= ~JS_UPDATED;
+  }
 }
 
 bool process_joystick_buttons(uint16_t keycode, keyrecord_t *record){
@@ -41,19 +45,25 @@ bool process_joystick_buttons(uint16_t keycode, keyrecord_t *record){
   return true;
 }
 
+__attribute__ ((weak))
 bool process_joystick_analog(){
-  
 #if JOYSTICK_AXES_COUNT > 0
   for (int axis_index=0 ; axis_index<JOYSTICK_AXES_COUNT ; ++axis_index){
-    if (joystick_axes[axis_index].input_pin==JS_VIRTUAL_AXIS){
+    if (joystick_axes[axis_index].output_pin==JS_VIRTUAL_AXIS || joystick_axes[axis_index].input_pin==JS_VIRTUAL_AXIS){
       continue;
     }
+    
+    setPinOutput(joystick_axes[axis_index].output_pin);
+    writePinHigh(joystick_axes[axis_index].output_pin);
+    setPinInputHigh(joystick_axes[axis_index].input_pin);
     
     int16_t axis_val = analogRead(joystick_axes[axis_index].input_pin);
     if (axis_val!=joystick_status.axes[axis_index]){
       joystick_status.axes[axis_index] = axis_val;
       joystick_status.status |= JS_UPDATED;
     }
+    
+    writePinLow(joystick_axes[axis_index].output_pin);
   }
 #endif
   return true;
