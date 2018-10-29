@@ -2,7 +2,7 @@
 
 The keyboard can be made to be recognized as a joystick HID device by the Operating System. 
 
-This is enable by adding in your rule.mk : 
+This is enabled by adding the following to `rules.mk`
 
 ```
 JOYSTICK_ENABLE = yes
