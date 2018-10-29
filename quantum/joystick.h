@@ -42,8 +42,6 @@ typedef struct {
 
 extern joystick_t joystick_status;
 
-//#define JS_INDEX(id, key) (key|((id & 0x7)<<6))
-
 //to be implemented in the hid protocol library
 void send_joystick_packet(joystick_t* joystick);
 
