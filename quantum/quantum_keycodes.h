@@ -458,6 +458,7 @@ enum quantum_keycodes {
 
 #ifdef JOYSTICK_ENABLE
     JS_BUTTON0 = 0x5E00,
+    JS_BUTTON_MIN = JS_BUTTON0,
     JS_BUTTON1,
     JS_BUTTON2,
     JS_BUTTON3,
