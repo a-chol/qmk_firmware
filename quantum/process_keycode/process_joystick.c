@@ -55,9 +55,12 @@ bool process_joystick_analog(){
     
     setPinOutput(joystick_axes[axis_index].output_pin);
     writePinHigh(joystick_axes[axis_index].output_pin);
-    setPinInputHigh(joystick_axes[axis_index].input_pin);
     
-    int16_t axis_val = analogRead(joystick_axes[axis_index].input_pin);
+    //disable pull-up resistance
+    setPinInput(joystick_axes[axis_index].input_pin);
+    writePinLow(joystick_axes[axis_index].input_pin);
+    
+    int16_t axis_val = analogRead(joystick_axes[axis_index].input_pin & (0xFF >> PORT_SHIFTER));
     if (axis_val!=joystick_status.axes[axis_index]){
       joystick_status.axes[axis_index] = axis_val;
       joystick_status.status |= JS_UPDATED;
