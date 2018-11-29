@@ -32,7 +32,7 @@ joystick_config_t joystick_axes[JOYSTICK_AXES_COUNT] = {
 ```
 
 In this example, the first axis will be read from the D7 pin, using an analogRead, whereas the second axis will not be read.
-In order to give a value to the second axis, you can do so in any custimizable entry point of quantum : as an action, in process_record_user or in matrix_scan_user, or even in joystick_task(void) which is call even when no key has been pressed.
+In order to give a value to the second axis, you can do so in any customizable entry point of quantum : as an action, in process_record_user or in matrix_scan_user, or even in joystick_task(void) which is called even when no key has been pressed.
 You assign a value by writing to joystick_status.axes[axis_index] a signed 8bit value (-127 to 127). Then it is necessary to assign the flag JS_UPDATED to joystick_status.status in order for the change to be taken into account.
 
 The following example writes two axes based on keypad presses, with KP_5 as a precision modifier : 
