@@ -26,12 +26,13 @@ You have to define an array of type ''joystick_config_t'' and of proper size, in
 ```
 //joystick config
 joystick_config_t joystick_axes[JOYSTICK_AXES_COUNT] = {
-  [0] = {D7, 65280, 65472},
-  [1] = {JS_VIRTUAL_AXIS, 65280, 65472}
+  [0] = {A1, D7, 65280, 65472},
+  [1] = {JS_VIRTUAL_AXIS, JS_VIRTUAL_AXIS, 65280, 65472}
 };
 ```
 
-In this example, the first axis will be read from the D7 pin, using an analogRead, whereas the second axis will not be read.
+In this example, the first axis will be read from the D7 pin while A1 is set high, using an analogRead, whereas the second axis will not be read. 
+If you connected the your analog component to Vcc instead of an output pin, you can set the output setting to JS_VIRTUAL_AXIS.
 In order to give a value to the second axis, you can do so in any customizable entry point of quantum : as an action, in process_record_user or in matrix_scan_user, or even in joystick_task(void) which is called even when no key has been pressed.
 You assign a value by writing to joystick_status.axes[axis_index] a signed 8bit value (-127 to 127). Then it is necessary to assign the flag JS_UPDATED to joystick_status.status in order for the change to be taken into account.
 
