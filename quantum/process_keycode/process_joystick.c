@@ -3,7 +3,9 @@
 #include <quantum/joystick.h>
 #include <quantum/quantum_keycodes.h>
 
-#include <drivers/avr/analog.h>
+#ifdef __AVR__
+# include <drivers/avr/analog.h>
+#endif
 
 #include <string.h>
 
@@ -60,7 +62,11 @@ bool process_joystick_analog(){
     setPinInput(joystick_axes[axis_index].input_pin);
     writePinLow(joystick_axes[axis_index].input_pin);
     
+#ifdef __AVR__
     int16_t axis_val = analogRead(joystick_axes[axis_index].input_pin & (0xFF >> PORT_SHIFTER));
+#else
+    int16_t axis_val = 0;
+#endif
     if (axis_val!=joystick_status.axes[axis_index]){
       joystick_status.axes[axis_index] = axis_val;
       joystick_status.status |= JS_UPDATED;
