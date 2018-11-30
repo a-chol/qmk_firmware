@@ -215,8 +215,9 @@ enum usb_endpoints {
 #   define CDC_IN_EPADDR                  (ENDPOINT_DIR_IN | CDC_IN_EPNUM)
 #   define CDC_OUT_EPADDR                  (ENDPOINT_DIR_OUT | CDC_OUT_EPNUM)
 #endif
-#if defined(JOYSTICK_ENABLE)
+#ifdef JOYSTICK_ENABLE
     JOYSTICK_IN_EPNUM = NEXT_EPNUM,
+    JOYSTICK_OUT_EPNUM = NEXT_EPNUM,
 #endif
 };
 
