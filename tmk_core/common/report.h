@@ -27,6 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define REPORT_ID_SYSTEM 3
 #define REPORT_ID_CONSUMER 4
 #define REPORT_ID_NKRO 5
+#define REPORT_ID_JOYSTICK 6
 
 /* mouse buttons */
 #define MOUSE_BTN1 (1 << 0)
