@@ -9,6 +9,7 @@
 #endif
 
 #include <string.h>
+#include <math.h>
 
 bool process_joystick_buttons(uint16_t keycode, keyrecord_t *record);
 
