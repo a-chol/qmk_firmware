@@ -142,6 +142,10 @@ extern layer_state_t layer_state;
 #    include "process_magic.h"
 #endif
 
+#ifdef JOYSTICK_ENABLE
+#    include "joystick.h"
+#endif
+
 #ifdef GRAVE_ESC_ENABLE
 #    include "process_grave_esc.h"
 #endif
@@ -176,10 +180,6 @@ extern layer_state_t layer_state;
 
 #ifdef VIA_ENABLE
 #    include "via.h"
-#endif
-
-#ifdef JOYSTICK_ENABLE
-#    include "joystick.h"
 #endif
 
 // Function substitutions to ease GPIO manipulation
