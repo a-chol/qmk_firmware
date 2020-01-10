@@ -138,6 +138,10 @@ extern layer_state_t layer_state;
 #    include "process_magic.h"
 #endif
 
+#ifdef JOYSTICK_ENABLE
+#    include "joystick.h"
+#endif
+
 #if defined(RGBLIGHT_ENABLE) || defined(RGB_MATRIX_ENABLE)
 #    include "process_rgb.h"
 #endif
@@ -160,10 +164,6 @@ extern layer_state_t layer_state;
 
 #ifdef DYNAMIC_MACRO_ENABLE
 #    include "process_dynamic_macro.h"
-#endif
-
-#ifdef JOYSTICK_ENABLE 
-#    include "joystick.h"
 #endif
 
 // Function substitutions to ease GPIO manipulation
