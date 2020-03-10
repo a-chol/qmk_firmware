@@ -1044,10 +1044,10 @@ uint16_t get_usb_descriptor(const uint16_t wValue, const uint16_t wIndex, const 
                     break;
 #endif
 #ifdef JOYSTICK_ENABLE
-            case JOYSTICK_INTERFACE:
-                Address = &ConfigurationDescriptor.Joystick_HID;
-                Size    = sizeof(USB_HID_Descriptor_HID_t);
-                break;
+                case JOYSTICK_INTERFACE:
+                    Address = &ConfigurationDescriptor.Joystick_HID;
+                    Size    = sizeof(USB_HID_Descriptor_HID_t);
+                    break;
 #endif
             }
 
@@ -1094,10 +1094,10 @@ uint16_t get_usb_descriptor(const uint16_t wValue, const uint16_t wIndex, const 
                     break;
 #endif
 #ifdef JOYSTICK_ENABLE
-            case JOYSTICK_INTERFACE:
-                Address = &JoystickReport;
-                Size    = sizeof(JoystickReport);
-                break;
+                case JOYSTICK_INTERFACE:
+                    Address = &JoystickReport;
+                    Size    = sizeof(JoystickReport);
+                    break;
 #endif
             }
 

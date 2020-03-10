@@ -168,14 +168,14 @@ typedef struct {
 } __attribute__((packed)) report_mouse_t;
 
 typedef struct {
-    #if JOYSTICK_AXES_COUNT>0
-    int8_t  axes[JOYSTICK_AXES_COUNT];
-    #endif
+#if JOYSTICK_AXES_COUNT > 0
+    int8_t axes[JOYSTICK_AXES_COUNT];
+#endif
 
-    #if JOYSTICK_BUTTON_COUNT>0
-    uint8_t buttons[(JOYSTICK_BUTTON_COUNT-1)/8+1];
-    #endif
-} __attribute__ ((packed)) joystick_report_t;
+#if JOYSTICK_BUTTON_COUNT > 0
+    uint8_t buttons[(JOYSTICK_BUTTON_COUNT - 1) / 8 + 1];
+#endif
+} __attribute__((packed)) joystick_report_t;
 
 /* keycode to system usage */
 static inline uint16_t KEYCODE2SYSTEM(uint8_t key) {
