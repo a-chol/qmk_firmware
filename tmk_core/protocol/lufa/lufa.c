@@ -276,26 +276,15 @@ static void Console_Task(void) {
  * Joystick
  ******************************************************************************/
 #ifdef JOYSTICK_ENABLE
-
-typedef struct {
-    #if JOYSTICK_AXES_COUNT>0
-    int8_t  axes[JOYSTICK_AXES_COUNT];
-    #endif
-    
-    #if JOYSTICK_BUTTON_COUNT>0
-    uint8_t buttons[(JOYSTICK_BUTTON_COUNT-1)/8+1];
-    #endif
-} __attribute__ ((packed)) joystick_report_t;
-
 void send_joystick_packet(joystick_t* joystick){
-    
+
     uint8_t timeout = 255;
     uint8_t where = where_to_send();
-    
+
     if (where != OUTPUT_USB && where != OUTPUT_USB_AND_BT) {
       return;
     }
-    
+
     joystick_report_t r = {
         #if JOYSTICK_AXES_COUNT>0
         .axes = {
@@ -318,11 +307,11 @@ void send_joystick_packet(joystick_t* joystick){
           #endif
         },
         #endif //JOYSTICK_AXES_COUNT>0
-        
+
         #if JOYSTICK_BUTTON_COUNT>0
         .buttons = {
             joystick->buttons[0]
-            
+
           #if JOYSTICK_BUTTON_COUNT>8
             ,joystick->buttons[1]
           #endif

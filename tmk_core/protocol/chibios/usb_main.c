@@ -48,7 +48,7 @@ extern keymap_config_t keymap_config;
 #endif
 
 #ifdef JOYSTICK_ENABLE
-# include <quantum/joystick.h>
+# include "joystick.h"
 #endif
 
 /* ---------------------------------------------------------
@@ -888,16 +888,6 @@ void virtser_task(void) {
 
 #ifdef JOYSTICK_ENABLE
 
-typedef struct {
-    #if JOYSTICK_AXES_COUNT>0
-    int8_t  axes[JOYSTICK_AXES_COUNT];
-    #endif
-    
-    #if JOYSTICK_BUTTON_COUNT>0
-    uint8_t buttons[(JOYSTICK_BUTTON_COUNT-1)/8+1];
-    #endif
-} __attribute__ ((packed)) joystick_report_t;
-
 void send_joystick_packet(joystick_t* joystick) {
     joystick_report_t rep = {
       #if JOYSTICK_AXES_COUNT>0
@@ -921,11 +911,11 @@ void send_joystick_packet(joystick_t* joystick) {
         #endif
       },
       #endif //JOYSTICK_AXES_COUNT>0
-      
+
       #if JOYSTICK_BUTTON_COUNT>0
       .buttons = {
           joystick->buttons[0]
-          
+
         #if JOYSTICK_BUTTON_COUNT>8
           ,joystick->buttons[1]
         #endif
@@ -938,7 +928,7 @@ void send_joystick_packet(joystick_t* joystick) {
       }
       #endif //JOYSTICK_BUTTON_COUNT>0
   };
-  
+
   chnWrite(&drivers.joystick_driver.driver, (uint8_t*)&rep, sizeof(rep));
 }
 

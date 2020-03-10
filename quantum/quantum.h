@@ -143,7 +143,7 @@ extern layer_state_t layer_state;
 #endif
 
 #ifdef JOYSTICK_ENABLE
-#    include "joystick.h"
+#    include "process_joystick.h"
 #endif
 
 #ifdef GRAVE_ESC_ENABLE

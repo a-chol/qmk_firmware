@@ -870,7 +870,6 @@ const USB_Descriptor_Configuration_t PROGMEM ConfigurationDescriptor = {
     },
 #endif
 
-
     /*
      * Joystick
      */
@@ -909,7 +908,7 @@ const USB_Descriptor_Configuration_t PROGMEM ConfigurationDescriptor = {
             .EndpointAddress        = (ENDPOINT_DIR_IN | JOYSTICK_IN_EPNUM),
             .Attributes             = (EP_TYPE_INTERRUPT | ENDPOINT_ATTR_NO_SYNC | ENDPOINT_USAGE_DATA),
             .EndpointSize           = JOYSTICK_EPSIZE,
-            .PollingIntervalMS      = 0x0A
+            .PollingIntervalMS      = USB_POLLING_INTERVAL_MS
         },
 #endif
 };

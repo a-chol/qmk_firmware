@@ -27,7 +27,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "host_driver.h"
 #include "vusb.h"
 #include "joystick.h"
-#include "joystick.h"
 #include <util/delay.h>
 
 static uint8_t vusb_keyboard_leds = 0;
